@@ -19,53 +19,102 @@ The function runAnalysis will perform the following modifications to the raw dat
 * Only the features representing "standard deviation" and "mean" are kept in the tidy data set
 * Add activity (sitting, lying, etc.) to the tidy data set - The raw data has the activities in a separate file
 * Add the subject/person to each line of the tidy data set. That way each line can easily be tied to one of the 30 volounteers
-* Aggregate the data per activity and subject, using the mean-function. Meaning, each subject will have as many lines in the file as activities, each showing the mean of all measurements for that particular subject/activity combination.
+* Aggregate the data per activity and subject, using the mean-function. As a result each subject will have as many lines in the file as activities, each showing the mean of all measurements for that particular subject/activity combination over the complete time series.
 * To simplify usage of the tidy data set, the column headers names are adjusted. All parenthesis "()" are removed and dashes and underscores "-" "_" replaced with dots ".".
 
 ### Features
 
 * Activity - A charachter string indicating the current activity. One of: LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, WALKING_UPSTAIRS
+
 * Subject - An integer indicating which person who performed the experiment
-* Column 3-68 - All contains numeric measurements, which are described by their column name using the following conventions:
-⋅⋅* Prefix "t" denotes a time series measurement captured at constant rate 50hz
-⋅⋅* 
 
- [1] "Activity"                  "Subject"                  
- [3] "tBodyAcc.mean.X"           "tBodyAcc.mean.Y"          
- [5] "tBodyAcc.mean.Z"           "tGravityAcc.mean.X"       
- [7] "tGravityAcc.mean.Y"        "tGravityAcc.mean.Z"       
- [9] "tBodyAccJerk.mean.X"       "tBodyAccJerk.mean.Y"      
-[11] "tBodyAccJerk.mean.Z"       "tBodyGyro.mean.X"         
-[13] "tBodyGyro.mean.Y"          "tBodyGyro.mean.Z"         
-[15] "tBodyGyroJerk.mean.X"      "tBodyGyroJerk.mean.Y"     
-[17] "tBodyGyroJerk.mean.Z"      "tBodyAccMag.mean"         
-[19] "tGravityAccMag.mean"       "tBodyAccJerkMag.mean"     
-[21] "tBodyGyroMag.mean"         "tBodyGyroJerkMag.mean"    
-[23] "fBodyAcc.mean.X"           "fBodyAcc.mean.Y"          
-[25] "fBodyAcc.mean.Z"           "fBodyAccJerk.mean.X"      
-[27] "fBodyAccJerk.mean.Y"       "fBodyAccJerk.mean.Z"      
-[29] "fBodyGyro.mean.X"          "fBodyGyro.mean.Y"         
-[31] "fBodyGyro.mean.Z"          "fBodyAccMag.mean"         
-[33] "fBodyBodyAccJerkMag.mean"  "fBodyBodyGyroMag.mean"    
-[35] "fBodyBodyGyroJerkMag.mean" "tBodyAcc.std.X"           
-[37] "tBodyAcc.std.Y"            "tBodyAcc.std.Z"           
-[39] "tGravityAcc.std.X"         "tGravityAcc.std.Y"        
-[41] "tGravityAcc.std.Z"         "tBodyAccJerk.std.X"       
-[43] "tBodyAccJerk.std.Y"        "tBodyAccJerk.std.Z"       
-[45] "tBodyGyro.std.X"           "tBodyGyro.std.Y"          
-[47] "tBodyGyro.std.Z"           "tBodyGyroJerk.std.X"      
-[49] "tBodyGyroJerk.std.Y"       "tBodyGyroJerk.std.Z"      
-[51] "tBodyAccMag.std"           "tGravityAccMag.std"       
-[53] "tBodyAccJerkMag.std"       "tBodyGyroMag.std"         
-[55] "tBodyGyroJerkMag.std"      "fBodyAcc.std.X"           
-[57] "fBodyAcc.std.Y"            "fBodyAcc.std.Z"           
-[59] "fBodyAccJerk.std.X"        "fBodyAccJerk.std.Y"       
-[61] "fBodyAccJerk.std.Z"        "fBodyGyro.std.X"          
-[63] "fBodyGyro.std.Y"           "fBodyGyro.std.Z"          
-[65] "fBodyAccMag.std"           "fBodyBodyAccJerkMag.std"  
-[67] "fBodyBodyGyroMag.std"      "fBodyBodyGyroJerkMag.std" 
+* Column 3-68 - Contains numeric measurements normalized to a value between [-1,1], each described by their column name using the following conventions:
 
+  * "t" - Time series measurement (note that in the tidy data set the series has been aggregated, see Code Book)
+  
+  * "Acc" - Measurement coming from the accelerometer
+  
+  * "Gyro" - Measurement coming from the gyroscope
+  
+  * "Body"/"Gravity" - Body or Gravity measurement that were separated from the accelerometer measurement using a low pass Butterworth filter with a corner frequency of 0.3 Hz.
+  
+  * "X"/"Y"/"Z" - Denotes the axis of the measurement
+  
+  * "Jerk" - The jerk signal, derived from body acceleration and angular velocity
+  
+  * "f" - The result of applying a Fast Fourier Transform (FFT) to the measurment
+  
+  * "mean" - The average value over the complete time series for that subject and activity
+  
+  * "std" - The average standard deviation over the complete time series for that subject and activity
 
-"Each variable and its units"
+#### Full List of Features
 
-
+1 Activity
+2 Subject
+3 tBodyAcc.mean.X
+4 tBodyAcc.mean.Y
+5 tBodyAcc.mean.Z
+6 tGravityAcc.mean.X
+7 tGravityAcc.mean.Y
+8 tGravityAcc.mean.Z
+9 tBodyAccJerk.mean.X
+10 tBodyAccJerk.mean.Y
+11 tBodyAccJerk.mean.Z
+12 tBodyGyro.mean.X
+13 tBodyGyro.mean.Y
+14 tBodyGyro.mean.Z
+15 tBodyGyroJerk.mean.X
+16 tBodyGyroJerk.mean.Y
+17 tBodyGyroJerk.mean.Z
+18 tBodyAccMag.mean
+19 tGravityAccMag.mean
+20 tBodyAccJerkMag.mean
+21 tBodyGyroMag.mean
+22 tBodyGyroJerkMag.mean
+23 fBodyAcc.mean.X
+24 fBodyAcc.mean.Y
+25 fBodyAcc.mean.Z
+26 fBodyAccJerk.mean.X
+27 fBodyAccJerk.mean.Y
+28 fBodyAccJerk.mean.Z
+29 fBodyGyro.mean.X
+30 fBodyGyro.mean.Y
+31 fBodyGyro.mean.Z
+32 fBodyAccMag.mean
+33 fBodyBodyAccJerkMag.mean
+34 fBodyBodyGyroMag.mean
+35 fBodyBodyGyroJerkMag.mean
+36 tBodyAcc.std.X
+37 tBodyAcc.std.Y
+38 tBodyAcc.std.Z
+39 tGravityAcc.std.X
+40 tGravityAcc.std.Y
+41 tGravityAcc.std.Z
+42 tBodyAccJerk.std.X
+43 tBodyAccJerk.std.Y
+44 tBodyAccJerk.std.Z
+45 tBodyGyro.std.X
+46 tBodyGyro.std.Y
+47 tBodyGyro.std.Z
+48 tBodyGyroJerk.std.X
+49 tBodyGyroJerk.std.Y
+50 tBodyGyroJerk.std.Z
+51 tBodyAccMag.std
+52 tGravityAccMag.std
+53 tBodyAccJerkMag.std
+54 tBodyGyroMag.std
+55 tBodyGyroJerkMag.std
+56 fBodyAcc.std.X
+57 fBodyAcc.std.Y
+58 fBodyAcc.std.Z
+59 fBodyAccJerk.std.X
+60 fBodyAccJerk.std.Y
+61 fBodyAccJerk.std.Z
+62 fBodyGyro.std.X
+63 fBodyGyro.std.Y
+64 fBodyGyro.std.Z
+65 fBodyAccMag.std
+66 fBodyBodyAccJerkMag.std
+67 fBodyBodyGyroMag.std
+68 fBodyBodyGyroJerkMag.std
