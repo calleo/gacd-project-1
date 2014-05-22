@@ -1,3 +1,7 @@
+
+# Use function runAnalysis() to start creation of the
+# tidy data set. All parameters are optional.
+
 runAnalysis <- function(wdir = ".", targetFile = "tidy.txt") {
   
   ## Set working directory
