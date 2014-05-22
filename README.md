@@ -1,7 +1,7 @@
 Getting and Cleaning Data - Project 1
 ==============
 
-### Study Design
+### Introduction
 
 This project aims at aggregating, simplifying and cleaning the raw data coming from the study "Human Activity Recognition Using Smartphones Dataset", version 1.0.
 
@@ -9,7 +9,7 @@ The raw data set contains data captured from a smartphone's accelerometer and gy
 
 The raw data set can be obtained from http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
-### Code book
+### Study Design
 
 To create the tidy data set using the raw data, the function runAnalysis() should be executed. This function expects a sub directory named "UCI HAR Dataset" in the current working directory, containing the raw data set. This sub directory will be created when extracting the zip-file "UCI HAR Dataset.zip", which can be obtained from the URL mentioned in chapter "Study Design". A new tidy dataset will be created and saved in the current working directory, with the file name "tidy.txt".
 
@@ -22,7 +22,9 @@ The function runAnalysis will perform the following modifications to the raw dat
 * Aggregate the data per activity and subject, using the mean-function. As a result each subject will have as many lines in the file as activities, each showing the mean of all measurements for that particular subject/activity combination over the complete time series.
 * To simplify usage of the tidy data set, the column headers names are adjusted. All parenthesis "()" are removed and dashes and underscores "-" "_" replaced with dots ".".
 
-### Features
+### Code book
+
+#### Features
 
 * Activity - A charachter string indicating the current activity. One of: LAYING, SITTING, STANDING, WALKING, WALKING_DOWNSTAIRS, WALKING_UPSTAIRS
 
