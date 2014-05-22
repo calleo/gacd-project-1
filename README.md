@@ -30,7 +30,7 @@ To create the tidy data set using the raw data, the function runAnalysis() shoul
 
 * Subject - An integer indicating which person who performed the experiment
 
-* Column 3-68 - Contains numeric measurements normalized to a value between [-1,1], each described by their column name using the following conventions:
+* Column 3-68 - Contains numeric velocity measurements normalized to a value between [-1,1], each described by their column name using the following conventions:
 
   * "t" - Time series measurement (note that in the tidy data set the series has been aggregated, see Code Book)
   
